@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Questions Page";
+}
+
+<a asp-page-handler="GetQuestions">GetQuestions</a>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <input type="text" id="txtName" />
+    <input type="button" id="btnGet" value="Get Current Time" />
+    <script type="text/javascript" src="http://localhost:44321/Quote/GetQuestions"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnGet").click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/AjaxMethod",
+                    data: '{name: "' + $("#txtName").val() + '" }',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        alert("Hello: " + response + " .\nCurrent Date and Time: " + response.DateTime);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

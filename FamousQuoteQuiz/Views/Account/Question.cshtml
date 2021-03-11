@@ -1,0 +1,31 @@
+﻿@model Dictionary<QuestionModel, List<AnswerModel>>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            Questions
+            @foreach (var item in Model)
+            {
+            <h3>Question</h3>
+            <form asp-action="SubmitQuiz" method="post">
+                <div class="question">
+                    <label> @item.Key.Question </label>
+                    <input type="text" class="question" id=@item.Key.ID />
+                </div>
+                @foreach (var a in item.Value)
+                {
+                    <div class="question">
+                        <label> @a.Answer </label>
+                        <input type="text" class="question" id=@item.Key.ID />
+                    </div>
+                }
+            </form>
+            }
+            <form asp-action="SubmitQuiz" method="post">
+                <label></label>
+                <input type="submit" class="btn btn-primary" value="Register" />
+            </form>
+            
+        </div>
+    </div>
+</div>
